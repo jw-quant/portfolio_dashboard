@@ -1,0 +1,13 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# All data and generated reports — never commit raw financials or output files
+data/
+reports/
