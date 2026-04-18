@@ -4,6 +4,9 @@ Python-based portfolio analytics system for broker account exports.
 
 Built to ingest raw brokerage CSVs, adjust returns for external cash flows, benchmark against SPY, and generate a self-contained HTML performance report.
 
+See processed preview screenshot below of a sample report:
+<img width="809" height="720" alt="image" src="https://github.com/user-attachments/assets/1791e41f-a41b-4fe1-81a4-d6671e2c6422" />
+
 
 ## Why this project exists
 
