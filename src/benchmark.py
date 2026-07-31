@@ -31,11 +31,16 @@ def load_benchmark_returns(
 
     Returns
     -------
-    pd.Series  daily returns (pct_change of adj_close_total_return),
+    pd.Series  daily returns (pct_change of adj_close),
                date-indexed as pd.Timestamp, name=ticker.upper().
                NaN on first day (no prior close available).
     """
-    prices_dir = Path(raw_dir, "prices")
+    # Use shared DATA_ROOT prices folder if set; fall back to raw_dir/prices
+    data_root = os.getenv("DATA_ROOT")
+    if data_root:
+        prices_dir = Path(data_root) / "data" / "prices"
+    else:
+        prices_dir = Path(raw_dir, "prices")
     prices_dir.mkdir(parents=True, exist_ok=True)
     csv_path = prices_dir / f"{ticker.upper()}.csv"
 
@@ -52,8 +57,8 @@ def load_benchmark_returns(
     df = df.sort_values("date").reset_index(drop=True)
 
     price_col = (
-        "adj_close_total_return"
-        if "adj_close_total_return" in df.columns
+        "adj_close"
+        if "adj_close" in df.columns
         else "close"
     )
     prices = df.set_index("date")[price_col]
